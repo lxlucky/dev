@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>index</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>-->
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/buttons.css" />
+    <style>
+        body{
+            font-family:Arial,Helvetica,sans-serif;
+            color:#6A6B6F;
+            text-align:center;
+            padding-top:17px;
+            width:470px;
+            margin:0 auto;
+        }
+        h1{
+            font-size:36px;
+        }
+        h2{
+            font-size:24px;
+        }
+        p{
+            font-size:18px;
+        }
+        #skPlayer{
+            margin:27px auto 0;
+        }
+        .container{
+            margin-top:200px;
+        }
+        .doc{
+            text-align:left;
+        }
+        pre{
+            padding-left:2em;
+            font-size:16px;
+            line-height:24px;
+            color:#fff;
+            background-color:#272822;
+            border-radius:3px;
+        }
+        @media screen and (max-width:768px){
+            body{
+                width:100%;
+            }
+            .doc{
+                display:none;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="http://ovvzmof6h.bkt.clouddn.com/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+    	//静音
+		function muted() {
+			var audio = $(".skPlayer-source")[0];
+			var muted = $("#muted_btn");
+			player.toggleMute();
+			if(audio.muted) {
+				muted.children("i").removeClass("fa-volume-up");
+				muted.children("i").addClass("fa-volume-off");
+			}else{
+				muted.children("i").removeClass("fa-volume-off");
+				muted.children("i").addClass("fa-volume-up");
+			}
+		}
+		
+		function toggle() {
+			var audio = $(".skPlayer-source")[0];
+			var play_btn = $("#play_btn");
+			player.toggle();
+			if(audio.paused) {
+				play_btn.children("i").removeClass("fa-pause");
+				play_btn.children("i").addClass("fa-play");
+			}else{
+				play_btn.children("i").removeClass("fa-play");
+				play_btn.children("i").addClass("fa-pause");
+			}
+		}
+		
+		function stop() {
+			var audio = $(".skPlayer-source")[0];
+			var play_btn = $("#play_btn");
+			player.stop();
+			if(audio.paused) {
+				play_btn.children("i").removeClass("fa-pause");
+				play_btn.children("i").addClass("fa-play");
+			}else{
+				play_btn.children("i").removeClass("fa-play");
+				play_btn.children("i").addClass("fa-pause");
+			}
+		}
+    </script>
+</head>
+<body>
+    <div id="skPlayer"></div>
+    <div class="container">
+    	<button id="pre_btn" onclick="player.prev()" class="button button-caution  button-box button-circle"><i class="fa fa-step-backward"></i></button>
+		<!--<button id="play_btn" onclick="player.toggle()" class="button button-caution  button-box button-circle"><i class="fa fa-pause"></i></button>-->
+		<button id="play_btn" onclick="toggle()" class="button button-caution  button-box button-circle"><i class="fa fa-pause"></i></button>
+		<button id="next_btn" onclick="player.next()" class="button button-caution  button-box button-circle"><i class="fa fa-step-forward"></i></button>
+		<button id="stop_btn" onclick="stop()" class="button button-caution  button-box button-circle"><i class="fa fa-stop"></i></button>
+		<button id="muted_btn" onclick="muted()" class="button button-caution  button-box button-circle"><i class="fa fa-volume-up"></i></button>
+		<button id="random_btn" onclick="player.RandomMusic()" class="button button-caution  button-box button-circle"><i class="fa fa-random"></i></button>
+		<!--<button id="list_btn" onclick="player.list()" class="button button-caution  button-box button-circle"><i class="fa fa-list"></i></button>-->
+    </div>
+    <script src="js/skPlayer.min.js"></script>
+    <script>
+        var player = new skPlayer({
+            autoplay: true,
+            music: {
+                type: 'cloud',
+                //151005115
+                source: 151005115
+            }
+        });
+    </script>
+</body>
+</html>
